@@ -3,23 +3,27 @@
 
 <p> Content: <%= @post.content%> </p>
 
-Categories: </br>
+Categories:
+<ul>
 <% @post.categories.each do |category| %>
-  <%= link_to category.name, category_path(category) %>
-<% end %></br></br>
+  <li><%= link_to category.name, category_path(category) %></li>
+<% end %></ul>
 
-
-Comments: </br>
+Comments:
+<ul>
 <% @post.comments.each do |comment| %>
-  <%= comment.user.username %> says: <%= comment.content %></li>
-<% end %> </br></br>
+  <li> <%= comment.user.username %> says: <%= comment.content %></li>
+<% end %> </ul>
 
-Users: </br>
+Users:
+<ul>
 <% @post.users.uniq.each do |user| %>
-  <%= link_to user.username, user_path(user) %>
-<% end %></br>
+  <li> <%= link_to user.username, user_path(user) %></li>
+<% end %></ul>
 
+<br>
 
+<h2> Create a Comment </h2>
 <%= form_for @post.comments.build do |f| %>
   <%= f.label :content %>
   <%= f.text_area :content %><br>
